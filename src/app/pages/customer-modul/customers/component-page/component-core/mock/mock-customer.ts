@@ -63,6 +63,10 @@ export class CustomerService extends CustomerData {
     return observableOf(this.customerData[id].title);
   }
 
+  getCustomerSystemState(id: number): Observable<boolean> {
+    return observableOf(this.customerData[id].systemCustomer);
+  }
+
   setCustomerLastName(id: number, lastname: string) {
     this.customerData[id].lastname = lastname;
   }
@@ -79,10 +83,16 @@ export class CustomerService extends CustomerData {
     this.customerData[id].title = title;
   }
 
-  switchCustomerSytemState(id: number){
-    state: true;
+  switchCustomerSytemState(id: number) {
+    this.customerData[id].systemCustomer = !this.customerData[id].systemCustomer;
 
   }
-  abstract setCustomerSytemState(id: number, state: boolean);
+  setCustomerSytemState(id: number, state: boolean) {
+    this.customerData[id].systemCustomer = state;
+  }
+
+  setCustomer(customer: Customer) {
+    this.customerData.push(customer);
+  }
 
 }
