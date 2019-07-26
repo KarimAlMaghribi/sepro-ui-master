@@ -14,6 +14,7 @@ export class CustomerService extends CustomerData {
       title: ' ',
       phonenumber: '01792445876',
       lastVisit: Date.prototype,
+      systemCustomer: true,
     }, {
       id: 2,
       name: 'Gustav',
@@ -21,6 +22,7 @@ export class CustomerService extends CustomerData {
       title: 'Dr.',
       phonenumber: '01792445876',
       lastVisit: Date.prototype,
+      systemCustomer: false,
     },
   ];
   getAllCustomer(): Observable<Customer[]> {
@@ -32,51 +34,55 @@ export class CustomerService extends CustomerData {
   }
 
   getCustomerByPhoneNumber(phonenumber: string): Observable<Customer> {
-    for (const customer of this.customerData){
-      if(customer.phonenumber == phonenumber){
-        return  observableOf(customer);
+    for (const customer of this.customerData) {
+      if (customer.phonenumber === phonenumber) {
+        return observableOf(customer);
+      } else {
+        return undefined;
       }
     }
+  }
+
+  getCustomerLastVisit(id: number): Observable<Date> {
+    return observableOf(this.customerData[id].lastVisit);
+  }
+
+  getCustomerLastname(id: number): Observable<string> {
+    return observableOf(this.customerData[id].lastname);
+  }
+
+  getCustomerName(id: number): Observable<string> {
+    return observableOf(this.customerData[id].name);
+  }
+
+  getCustomerPhonenumber(id: number): Observable<string> {
     return observableOf(this.customerData[id].phonenumber);
   }
 
-  getCustomerLastVisit(id: number): Observable<{ lastVisit: Date }> {
-    return undefined;
-  }
-
-  getCustomerLastname(id: number): Observable<{ lastname: string }> {
-    return undefined;
-  }
-
-  getCustomerName(id: number): Observable<{ name: string }> {
-    return undefined;
-  }
-
-  getCustomerPhonenumber(id: number): Observable<{ phonenumber: string }> {
-    return undefined;
-  }
-
-  getCustomerTitle(id: number): Observable<{ title: string }> {
-    return undefined;
+  getCustomerTitle(id: number): Observable<string> {
+    return observableOf(this.customerData[id].title);
   }
 
   setCustomerLastName(id: number, lastname: string) {
+    this.customerData[id].lastname = lastname;
   }
 
   setCustomerName(id: number, name: string) {
+    this.customerData[id].lastname = name;
   }
 
   setCustomerPhoneNumber(id: number, phoneNumber: string) {
+    this.customerData[id].phonenumber = phoneNumber;
   }
 
   setCustomerTitle(id: number, title: string) {
+    this.customerData[id].title = title;
   }
 
-  setLocalCustomer(customer: Customer) {
-  }
+  switchCustomerSytemState(id: number){
+    state: true;
 
-  setSystemCustomer(customer: Customer) {
   }
-
+  abstract setCustomerSytemState(id: number, state: boolean);
 
 }
