@@ -9,12 +9,12 @@ export interface Customer {
   lastVisit: Date;
 }
 
-export abstract class Customer {
+export abstract class CustomerData {
 
 // getter
   abstract getAllCustomer(): Observable<Customer[]>;
   abstract getCustomerById(id: number): Observable<Customer>;
-  abstract getCustomerByPhoneNumber(id: number): Observable<Customer>;
+  abstract getCustomerByPhoneNumber(phoneNumber: string): Observable<Customer>;
 
   abstract getCustomerName(id: number): Observable<{name: string}>;
   abstract getCustomerLastname(id: number): Observable<{lastname: string}>;
