@@ -1,3 +1,23 @@
-<p>
-  customers works!
-</p>
+
+
+    <nb-layout center>
+      <nb-layout-header>
+        <nb-action icon="search-outline"></nb-action>
+      </nb-layout-header>
+
+      <nb-layout-column>
+        <nb-card size="giant">
+          <nb-tabset fullWidth>
+            <nb-tab tabTitle="Customer">
+              <nb-list>
+                <nb-list-item class="customer" *ngFor="let c of customers">
+                  <nb-user [picture]="c.user.picture" [name]="c.user.name" [title]="c.type" size="large"></nb-user>
+                </nb-list-item>
+              </nb-list>
+            </nb-tab>
+          </nb-tabset>
+        </nb-card>
+      </nb-layout-column>
+
+
+    </nb-layout>

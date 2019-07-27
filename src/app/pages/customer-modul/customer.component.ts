@@ -4,7 +4,15 @@ import { Component, OnInit } from '@angular/core';
   selector: 'ngx-app-customer',
   styleUrls: ['./customer.component.scss'],
   template: `
-    <p>Customer Works!</p>
+    <nb-layout>
+      <nb-layout-header fixed>Company Name</nb-layout-header>
+
+      <nb-sidebar>Sidebar Content</nb-sidebar>
+
+      <nb-layout-column>
+        Page Content <button nbButton>Hello World</button>
+      </nb-layout-column>
+    </nb-layout>
   `,
 })
 export class CustomerComponent implements OnInit {
